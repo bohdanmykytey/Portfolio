@@ -5,15 +5,15 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import TerminalOutlinedIcon from '@mui/icons-material/TerminalOutlined';
+import {IntegrationInstructionsOutlined} from "@mui/icons-material";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import {Link} from "@mui/material";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["PlaceHolder", "PlaceHolder", "PlaceHolder", "PlaceHolder"];
 
 const Header: React.FC = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -38,29 +38,17 @@ const Header: React.FC = () => {
     setAnchorElUser(null);
   };
 
+  const downloadResume = (event: React.MouseEvent<HTMLElement>) => {
+    console.log("resume button clicked");
+  };
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <TerminalOutlinedIcon sx={{display: {xs: "none", md: "flex"}, mr: 1}} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: {xs: "none", md: "flex"},
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Bohdan Mykytey
-          </Typography>
-
+          <IntegrationInstructionsOutlined
+            sx={{display: {md: "flex"}, mr: 1}}
+          />
           <Box sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}>
             <IconButton
               size="large"
@@ -70,7 +58,7 @@ const Header: React.FC = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <TerminalOutlinedIcon />
+              <IntegrationInstructionsOutlined />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -87,26 +75,19 @@ const Header: React.FC = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{display: {xs: "block", md: "none"}}}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{textAlign: "center"}}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            ></Menu>
           </Box>
-          <TerminalOutlinedIcon sx={{display: {xs: "flex", md: "none"}, mr: 1}} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="google.com"
             sx={{
               mr: 2,
-              display: {xs: "flex", md: "none"},
+              display: {xs: "flex", md: "left"},
               flexGrow: 1,
               fontFamily: "monospace",
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
@@ -114,20 +95,39 @@ const Header: React.FC = () => {
           >
             Bohdan Mykytey
           </Typography>
-          <Box sx={{flexGrow: 1, display: {xs: "none", md: "flex"}}}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: "white", display: "block"}}
-              >
-                {page}
-              </Button>
-            ))}
+          <IntegrationInstructionsOutlined
+            sx={{display: {xs: "flex", md: "none"}, mr: 1}}
+          />
+          <Box
+            sx={{
+              typography: "body1",
+              "& > :not(style) ~ :not(style)": {
+                ml: 3,
+              },
+            }}
+          >
+            <Link
+              color="inherit"
+              target="_blank"
+              rel="LinkedIn"
+              href="https://www.linkedin.com/in/bohdanmykytey/"
+              underline="hover"
+              fontSize="1.5rem"
+            >
+              LinkedIn
+            </Link>
+
+            <Link color="inherit" underline="hover" fontSize="1.5rem">
+              Download Resume
+            </Link>
+
+            <Link color="inherit" underline="hover" fontSize="1.5rem">
+              Contact Me
+            </Link>
           </Box>
           <Box sx={{flexGrow: 0}}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+              <IconButton onClick={handleOpenUserMenu} sx={{p: 2}}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
@@ -136,12 +136,12 @@ const Header: React.FC = () => {
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
+                vertical: "center",
                 horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
+                vertical: "center",
                 horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
