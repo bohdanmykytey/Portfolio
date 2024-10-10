@@ -117,7 +117,13 @@ const Header: React.FC = () => {
               LinkedIn
             </Link>
 
-            <Link color="inherit" underline="hover" fontSize="1.5rem">
+            <Link
+              href="Bohdan Mykytey - Resume.pdf"
+              download="Bohdan Mykytey Resume"
+              color="inherit"
+              underline="hover"
+              fontSize="1.5rem"
+            >
               Download Resume
             </Link>
 
