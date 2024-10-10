@@ -127,7 +127,7 @@ const Header: React.FC = () => {
               Download Resume
             </Link>
 
-            <Link color="inherit" underline="hover" fontSize="1.5rem">
+            <Link href={`mailto:bohdan.mykytey@gmail.com`} color="inherit" underline="hover" fontSize="1.5rem">
               Contact Me
             </Link>
           </Box>
