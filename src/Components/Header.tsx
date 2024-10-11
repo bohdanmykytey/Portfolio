@@ -8,80 +8,32 @@ import Menu from "@mui/material/Menu";
 import {IntegrationInstructionsOutlined} from "@mui/icons-material";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import {Link} from "@mui/material";
-
-const settings = ["PlaceHolder", "PlaceHolder", "PlaceHolder", "PlaceHolder"];
+import "../../src/styles.css";
 
 const Header: React.FC = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  const downloadResume = (event: React.MouseEvent<HTMLElement>) => {
-    console.log("resume button clicked");
-  };
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <IntegrationInstructionsOutlined
-            sx={{display: {md: "flex"}, mr: 1}}
-          />
-          <Box sx={{flexGrow: 1, display: {xs: "flex", md: "none"}}}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <IntegrationInstructionsOutlined />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{display: {xs: "block", md: "none"}}}
-            ></Menu>
-          </Box>
           <Typography
+            className="app-bar-header"
             variant="h5"
             noWrap
-            component="a"
-            href="google.com"
             sx={{
               mr: 2,
               display: {xs: "flex", md: "left"},
@@ -95,18 +47,16 @@ const Header: React.FC = () => {
           >
             Bohdan Mykytey
           </Typography>
-          <IntegrationInstructionsOutlined
-            sx={{display: {xs: "flex", md: "none"}, mr: 1}}
-          />
           <Box
             sx={{
               typography: "body1",
               "& > :not(style) ~ :not(style)": {
-                ml: 3,
+                ml: 5,
               },
             }}
           >
             <Link
+              className="linkedin"
               color="inherit"
               target="_blank"
               rel="LinkedIn"
@@ -118,6 +68,7 @@ const Header: React.FC = () => {
             </Link>
 
             <Link
+              className="download-resume"
               href="Bohdan Mykytey - Resume.pdf"
               download="Bohdan Mykytey Resume"
               color="inherit"
@@ -127,14 +78,20 @@ const Header: React.FC = () => {
               Download Resume
             </Link>
 
-            <Link href={`mailto:bohdan.mykytey@gmail.com`} color="inherit" underline="hover" fontSize="1.5rem">
+            <Link
+              className="contact-me"
+              href={`mailto:bohdan.mykytey@gmail.com`}
+              color="inherit"
+              underline="hover"
+              fontSize="1.5rem"
+            >
               Contact Me
             </Link>
           </Box>
           <Box sx={{flexGrow: 0}}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{p: 2}}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar className="profile-avatar" alt="B" src="profile pic.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -153,11 +110,29 @@ const Header: React.FC = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{textAlign: "center"}}>{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem>
+                <Link
+                  target="_blank"
+                  rel="LinkedIn"
+                  href="https://www.linkedin.com/in/bohdanmykytey/"
+                >
+                  <Typography>LinkedIn</Typography>
+                </Link>
+              </MenuItem>
+
+              <MenuItem>
+                <Link
+                  href="Bohdan Mykytey - Resume.pdf"
+                  download="Bohdan Mykytey Resume"
+                >
+                  <Typography>Download Resume</Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href={`mailto:bohdan.mykytey@gmail.com`}>
+                  <Typography>Contact Me</Typography>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>

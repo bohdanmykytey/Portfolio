@@ -1,0 +1,20 @@
+.app-bar-header {
+    display: flex;
+    justify-content: flex-start;
+}
+
+@media (max-width: 950px) {
+    .app-bar-header {
+        display: flex;
+        justify-content: center;
+    }
+    .linkedin {
+        display: none
+    }
+    .contact-me {
+        display: none
+    }
+    .download-resume {
+        display: none;
+    }
+}
