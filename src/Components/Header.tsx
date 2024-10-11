@@ -1,22 +1,32 @@
-import * as React from "react";
+import React, {useEffect, useState} from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import {IntegrationInstructionsOutlined} from "@mui/icons-material";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from '@mui/icons-material/Menu';
 import {Link} from "@mui/material";
 import "../../src/styles.css";
 
 const Header: React.FC = () => {
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [windowWidth]);
+
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -88,12 +98,24 @@ const Header: React.FC = () => {
               Contact Me
             </Link>
           </Box>
-          <Box sx={{flexGrow: 0}}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{p: 2}}>
-                <Avatar className="profile-avatar" alt="B" src="profile pic.jpg" />
-              </IconButton>
-            </Tooltip>
+          <Box>
+            {windowWidth > 950 ? (
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{p: 3}}>
+                  <Avatar
+                    className="profile-avatar"
+                    alt="B"
+                    src="profile_pic.jpg"
+                  />
+                </IconButton>
+              </Tooltip>
+            ) : (
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{p: 4}}>
+                  <MenuIcon className="hamburger-menu"/>
+                </IconButton>
+              </Tooltip>
+            )}
             <Menu
               sx={{mt: "45px"}}
               id="menu-appbar"
