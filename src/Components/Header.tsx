@@ -11,7 +11,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from '@mui/icons-material/Menu';
 import {Link} from "@mui/material";
-import "../../src/styles.css";
+import "../../src/header.styles.css";
 
 const Header: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
